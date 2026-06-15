@@ -73,7 +73,20 @@ def get_top_10_certified_fresh_movies(movies: list[Movie]) -> list[Movie]:
     return get_movies_by_rating(movies, certified_fresh=True, limit=10)
 
 
-if __name__ == '__main__':
+def main() -> None:
+    """Main entry point of the script."""
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
+
     movies = parse_movie_list(movie_list)
     top_10_certified_fresh_movies = get_top_10_certified_fresh_movies(movies)
-    print(top_10_certified_fresh_movies)
+
+    print('\n --- TOP 10 CERTIFIED FRESH MOVIES ---')
+    for movie in top_10_certified_fresh_movies:
+        print(f"- {movie.movie_title} ({movie.rating})")
+
+
+if __name__ == "__main__":
+    main()
